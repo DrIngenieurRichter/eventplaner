@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Event {
@@ -23,6 +25,17 @@ public class Event {
     private String location;
 
     private String description;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Participant> participants = new ArrayList<>();
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
 
     // Getter und Setter
 

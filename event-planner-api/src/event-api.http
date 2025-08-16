@@ -24,7 +24,7 @@ Content-Type: application/json
 ###
 
 ### Event aktualisieren
-PUT http://localhost:8080/api/events/1
+PUT http://localhost:8080/api/events/2
 Content-Type: application/json
 
 {
@@ -38,3 +38,22 @@ Content-Type: application/json
 
 ### Event löschen
 DELETE http://localhost:8080/api/events/1
+
+### Teilnehmer erstellen
+POST http://localhost:8080/participants
+Content-Type: application/json
+
+{
+  "firstName": "Anna",
+  "lastName": "Müller",
+  "email": "anna.mueller@example.com"
+}
+
+### Teilnehmer einem Event zuweisen
+PUT http://localhost:8080/participants/1/assign/1
+
+### Teilnehmer von Event entfernen
+PUT http://localhost:8080/participants/1/remove
+
+### Alle Teilnehmer eines Events abrufen
+GET http://localhost:8080/participants/event/2

@@ -1,0 +1,82 @@
+### 📅 Create Event
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "name": "Tech Conference 2025",
+  "location": "Berlin",
+  "date": "2025-09-15"
+}
+
+###
+
+### 📅 Get All Events
+GET http://localhost:8080/api/events
+
+###
+
+### 📅 Get Event by ID
+GET http://localhost:8080/api/events/1
+
+###
+
+### 📅 Update Event
+PUT http://localhost:8080/api/events/1
+Content-Type: application/json
+
+{
+  "name": "Tech Conference 2025 - Updated",
+  "location": "Hamburg",
+  "date": "2025-09-20"
+}
+
+###
+
+### 📅 Delete Event
+DELETE http://localhost:8080/api/events/1
+
+###
+
+### 👤 Create Participant
+POST http://localhost:8080/api/participants
+Content-Type: application/json
+
+{
+  "firstName": "Anna",
+  "lastName": "Schmidt",
+  "email": "anna.schmidt@example.com",
+  "eventId": 2
+}
+
+###
+
+### 👤 Get All Participants
+GET http://localhost:8080/api/participants
+
+###
+
+### 👤 Get Participant by ID
+GET http://localhost:8080/api/participants/1
+
+###
+
+### 👤 Update Participant
+PUT http://localhost:8080/api/participants/1
+Content-Type: application/json
+
+{
+  "firstName": "Anna",
+  "lastName": "Müller",
+  "email": "anna.mueller@example.com",
+  "eventId": 2
+}
+
+###
+
+### 👤 Delete Participant
+DELETE http://localhost:8080/api/participants/1
+
+###
+
+### 🔗 Assign Event to Participant
+PUT http://localhost:8080/api/participants/1/assign-event/2

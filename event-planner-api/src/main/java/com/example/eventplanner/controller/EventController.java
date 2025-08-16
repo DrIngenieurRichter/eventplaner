@@ -1,9 +1,9 @@
 package com.example.eventplanner.controller;
 
+import com.example.eventplanner.dto.EventDto;
 import com.example.eventplanner.model.Event;
 import com.example.eventplanner.service.EventService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,38 +15,38 @@ public class EventController {
 
     private final EventService eventService;
 
-    @Autowired
     public EventController(EventService eventService) {
         this.eventService = eventService;
     }
 
-    // Alle Events abrufen
-    @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
-        return ResponseEntity.ok(eventService.getAllEvents());
-    }
-
-    // Einzelnes Event abrufen
-    @GetMapping("/{id}")
-    public ResponseEntity<Event> getEventById(@PathVariable Long id) {
-        return eventService.getEventById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    // Neues Event erstellen
     @PostMapping
-    public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) {
-        return ResponseEntity.ok(eventService.createEvent(event));
+    public ResponseEntity<EventDto> createEvent(@Valid @RequestBody EventDto dto) {
+        Event event = eventService.toEntity(dto);
+        Event saved = eventService.createEvent(event);
+        return ResponseEntity.ok(eventService.toDto(saved));
     }
 
-    // Event aktualisieren
+    @GetMapping
+    public ResponseEntity<List<EventDto>> getAllEvents() {
+        List<Event> events = eventService.getAllEvents();
+        List<EventDto> dtos = events.stream()
+                .map(eventService::toDto)
+                .toList();
+        return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EventDto> getEventById(@PathVariable Long id) {
+        Event event = eventService.getEventById(id);
+        return ResponseEntity.ok(eventService.toDto(event));
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @Valid @RequestBody Event event) {
-        return ResponseEntity.ok(eventService.updateEvent(id, event));
+    public ResponseEntity<EventDto> updateEvent(@PathVariable Long id, @Valid @RequestBody EventDto dto) {
+        Event updated = eventService.updateEvent(id, eventService.toEntity(dto));
+        return ResponseEntity.ok(eventService.toDto(updated));
     }
 
-    // Event löschen
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         eventService.deleteEvent(id);

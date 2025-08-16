@@ -1,0 +1,40 @@
+### Alle Events abrufen
+GET http://localhost:8080/api/events
+Accept: application/json
+
+###
+
+### Einzelnes Event abrufen
+GET http://localhost:8080/api/events/1
+Accept: application/json
+
+###
+
+### Neues Event erstellen
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "name": "Spring Boot Workshop",
+  "date": "2025-09-20",
+  "location": "Hannover",
+  "description": "Ein Workshop für Spring Boot Einsteiger"
+}
+
+###
+
+### Event aktualisieren
+PUT http://localhost:8080/api/events/1
+Content-Type: application/json
+
+{
+  "name": "Spring Boot Workshop - Update",
+  "date": "2025-09-21",
+  "location": "Hannover",
+  "description": "Aktualisierte Beschreibung"
+}
+
+###
+
+### Event löschen
+DELETE http://localhost:8080/api/events/1

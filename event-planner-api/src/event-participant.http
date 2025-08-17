@@ -3,9 +3,10 @@ POST http://localhost:8080/api/events
 Content-Type: application/json
 
 {
-  "name": "Tech Conference 2025",
-  "location": "Berlin",
-  "date": "2025-09-15"
+  "name": "Spring Boot Workshop",
+  "date": "2025-09-20",
+  "location": "Hannover",
+  "description": "Ein Workshop für Spring Boot Einsteiger"
 }
 
 ###
@@ -21,13 +22,14 @@ GET http://localhost:8080/api/events/1
 ###
 
 ### 📅 Update Event
-PUT http://localhost:8080/api/events/1
+PUT http://localhost:8080/api/events/2
 Content-Type: application/json
 
 {
-  "name": "Tech Conference 2025 - Updated",
-  "location": "Hamburg",
-  "date": "2025-09-20"
+  "name": "Spring Boot Workshop - Update",
+  "date": "2025-09-21",
+  "location": "Hannover",
+  "description": "Aktualisierte Beschreibung"
 }
 
 ###
@@ -45,7 +47,7 @@ Content-Type: application/json
   "firstName": "Anna",
   "lastName": "Schmidt",
   "email": "anna.schmidt@example.com",
-  "eventId": 2
+  "eventId": 1
 }
 
 ###
@@ -61,7 +63,7 @@ GET http://localhost:8080/api/participants/1
 ###
 
 ### 👤 Update Participant
-PUT http://localhost:8080/api/participants/1
+PUT http://localhost:8080/api/participants/2
 Content-Type: application/json
 
 {
@@ -79,4 +81,4 @@ DELETE http://localhost:8080/api/participants/1
 ###
 
 ### 🔗 Assign Event to Participant
-PUT http://localhost:8080/api/participants/1/assign-event/2
+PUT http://localhost:8080/api/participants/3/assign-event/2

@@ -12,6 +12,7 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
+    // Constructor Injection
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
@@ -34,6 +35,7 @@ public class EventService {
         existing.setName(updatedEvent.getName());
         existing.setDate(updatedEvent.getDate());
         existing.setLocation(updatedEvent.getLocation());
+        existing.setDescription(updatedEvent.getDescription());
         return eventRepository.save(existing);
     }
 
@@ -48,6 +50,7 @@ public class EventService {
         dto.setName(event.getName());
         dto.setDate(event.getDate());
         dto.setLocation(event.getLocation());
+        dto.setDescription(event.getDescription());
         return dto;
     }
 
@@ -57,6 +60,7 @@ public class EventService {
         event.setName(dto.getName());
         event.setDate(dto.getDate());
         event.setLocation(dto.getLocation());
+        event.setDescription(dto.getDescription());
         return event;
     }
 }

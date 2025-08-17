@@ -23,7 +23,7 @@ public class Participant {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "event_id") // Fremdschlüsselspalte
     private Event event;
 
     // Getter und Setter
